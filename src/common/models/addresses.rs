@@ -1,9 +1,8 @@
 use crate::providers::info::InfoProvider;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Debug, PartialEq)]
+#[derive(Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
-#[cfg_attr(test, derive(serde::Deserialize))]
 pub struct AddressEx {
     pub value: String,
     #[serde(skip_serializing_if = "Option::is_none")]

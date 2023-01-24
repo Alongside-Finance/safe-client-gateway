@@ -2,9 +2,8 @@ use crate::common::models::addresses::AddressEx;
 use crate::common::models::data_decoded::Operation;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Debug, PartialEq)]
+#[derive(Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
-#[cfg_attr(test, derive(Deserialize))]
 pub struct SafeInfoEx {
     pub address: AddressEx,
     pub chain_id: String,
@@ -30,7 +29,7 @@ pub struct SafeLastChanges {
     pub messages_tag: Option<String>,
 }
 
-#[derive(Serialize, Debug, PartialEq)]
+#[derive(Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(test, derive(Deserialize))]
 pub struct SafeState {
@@ -40,9 +39,8 @@ pub struct SafeState {
     pub safe_state: SafeLastChanges,
 }
 
-#[derive(Serialize, Debug, PartialEq)]
+#[derive(Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-#[cfg_attr(test, derive(Deserialize))]
 pub enum ImplementationVersionState {
     UpToDate,
     Outdated,
