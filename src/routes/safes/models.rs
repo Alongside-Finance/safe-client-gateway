@@ -19,9 +19,8 @@ pub struct SafeInfoEx {
     pub implementation_version_state: ImplementationVersionState,
 }
 
-#[derive(Serialize, Debug, PartialEq)]
+#[derive(Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
-#[cfg_attr(test, derive(Deserialize))]
 pub struct SafeLastChanges {
     pub collectibles_tag: String,
     pub tx_queued_tag: String,
