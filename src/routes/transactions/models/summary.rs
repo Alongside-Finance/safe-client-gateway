@@ -122,9 +122,9 @@ use serde::Serialize;
 /// ```
 ///
 /// </details>
-#[derive(Serialize, Debug)]
+#[derive(serde::Deserialize, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
-#[cfg_attr(test, derive(PartialEq, serde::Deserialize))]
+#[cfg_attr(test, derive(PartialEq))]
 pub struct TransactionSummary {
     pub id: String,
     pub timestamp: i64,
@@ -136,17 +136,17 @@ pub struct TransactionSummary {
     pub safe_app_info: Option<SafeAppInfo>,
 }
 
-#[derive(Serialize, Debug)]
+#[derive(serde::Deserialize, Serialize, Debug)]
 #[serde(tag = "type", rename_all = "SCREAMING_SNAKE_CASE")]
-#[cfg_attr(test, derive(PartialEq, serde::Deserialize))]
+#[cfg_attr(test, derive(PartialEq))]
 pub enum ExecutionInfo {
     Multisig(MultisigExecutionInfo),
     Module(ModuleExecutionInfo),
 }
 
-#[derive(Serialize, Debug)]
+#[derive(serde::Deserialize, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
-#[cfg_attr(test, derive(PartialEq, serde::Deserialize))]
+#[cfg_attr(test, derive(PartialEq))]
 pub struct MultisigExecutionInfo {
     pub nonce: u64,
     pub confirmations_required: u64,
@@ -155,17 +155,17 @@ pub struct MultisigExecutionInfo {
     pub missing_signers: Option<Vec<AddressEx>>,
 }
 
-#[derive(Serialize, Debug)]
+#[derive(serde::Deserialize, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
-#[cfg_attr(test, derive(PartialEq, serde::Deserialize))]
+#[cfg_attr(test, derive(PartialEq))]
 pub struct ModuleExecutionInfo {
     pub address: AddressEx,
 }
 
-#[derive(Serialize, Debug)]
+#[derive(serde::Deserialize, Serialize, Debug)]
 #[serde(tag = "type")]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-#[cfg_attr(test, derive(PartialEq, serde::Deserialize))]
+#[cfg_attr(test, derive(PartialEq))]
 pub enum TransactionListItem {
     #[serde(rename_all = "camelCase")]
     Transaction {
@@ -183,8 +183,8 @@ pub enum TransactionListItem {
     },
 }
 
-#[derive(Serialize, Debug)]
-#[cfg_attr(test, derive(PartialEq, serde::Deserialize))]
+#[derive(serde::Deserialize, Serialize, Debug)]
+#[cfg_attr(test, derive(PartialEq))]
 pub enum Label {
     Next,
     Queued,

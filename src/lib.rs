@@ -23,7 +23,7 @@ pub mod macros;
 
 #[doc(hidden)]
 mod cache;
-mod common;
+pub mod common;
 #[doc(hidden)]
 mod config;
 
