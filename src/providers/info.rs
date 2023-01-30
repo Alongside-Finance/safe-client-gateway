@@ -64,7 +64,7 @@ pub struct SafeInfo {
     pub version: Option<String>,
 }
 
-#[derive(serde::Deserialize, PartialEq, Serialize, Debug)]
+#[derive(Clone, serde::Deserialize, PartialEq, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct SafeAppInfo {
     pub name: String,

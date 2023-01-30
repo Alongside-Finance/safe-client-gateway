@@ -122,7 +122,7 @@ use serde::Serialize;
 /// ```
 ///
 /// </details>
-#[derive(serde::Deserialize, Serialize, Debug)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(test, derive(PartialEq))]
 pub struct TransactionSummary {
@@ -136,7 +136,7 @@ pub struct TransactionSummary {
     pub safe_app_info: Option<SafeAppInfo>,
 }
 
-#[derive(serde::Deserialize, Serialize, Debug)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug)]
 #[serde(tag = "type", rename_all = "SCREAMING_SNAKE_CASE")]
 #[cfg_attr(test, derive(PartialEq))]
 pub enum ExecutionInfo {
@@ -144,7 +144,7 @@ pub enum ExecutionInfo {
     Module(ModuleExecutionInfo),
 }
 
-#[derive(serde::Deserialize, Serialize, Debug)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(test, derive(PartialEq))]
 pub struct MultisigExecutionInfo {
@@ -155,7 +155,7 @@ pub struct MultisigExecutionInfo {
     pub missing_signers: Option<Vec<AddressEx>>,
 }
 
-#[derive(serde::Deserialize, Serialize, Debug)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 #[cfg_attr(test, derive(PartialEq))]
 pub struct ModuleExecutionInfo {

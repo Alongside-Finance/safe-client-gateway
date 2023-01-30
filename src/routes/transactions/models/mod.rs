@@ -32,7 +32,7 @@ pub(crate) enum TransactionIdParts {
     TransactionHash(String),
 }
 
-#[derive(serde::Deserialize, Serialize, Debug, PartialEq)]
+#[derive(serde::Deserialize, Serialize, Debug, PartialEq, Clone)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum TransactionStatus {
     AwaitingConfirmations,
@@ -42,7 +42,7 @@ pub enum TransactionStatus {
     Success,
 }
 
-#[derive(serde::Deserialize, Serialize, Debug, PartialEq)]
+#[derive(serde::Deserialize, Serialize, Debug, PartialEq, Clone)]
 #[serde(tag = "type")]
 pub enum TransactionInfo {
     Transfer(Transfer),
@@ -52,7 +52,7 @@ pub enum TransactionInfo {
     Unknown,
 }
 
-#[derive(serde::Deserialize, Serialize, Debug, PartialEq)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Transfer {
     pub sender: AddressEx,
@@ -61,7 +61,7 @@ pub struct Transfer {
     pub transfer_info: TransferInfo,
 }
 
-#[derive(serde::Deserialize, Serialize, Debug, PartialEq)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum TransferDirection {
     Incoming,
@@ -69,7 +69,7 @@ pub enum TransferDirection {
     Unknown,
 }
 
-#[derive(serde::Deserialize, Serialize, Debug, PartialEq)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug, PartialEq)]
 #[serde(tag = "type", rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum TransferInfo {
     Erc20(Erc20Transfer),
@@ -77,7 +77,7 @@ pub enum TransferInfo {
     NativeCoin(NativeCoinTransfer),
 }
 
-#[derive(serde::Deserialize, Serialize, Debug, PartialEq)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Erc20Transfer {
     // No need to map to AddressEx as the information are present in this struct
@@ -89,7 +89,7 @@ pub struct Erc20Transfer {
     pub value: String,
 }
 
-#[derive(serde::Deserialize, Serialize, Debug, PartialEq)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Erc721Transfer {
     // No need to map to AddressEx as the information are present in this struct
@@ -100,20 +100,20 @@ pub struct Erc721Transfer {
     pub logo_uri: Option<String>,
 }
 
-#[derive(serde::Deserialize, Serialize, Debug, PartialEq)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct NativeCoinTransfer {
     pub value: String,
 }
 
-#[derive(serde::Deserialize, Serialize, Debug, PartialEq)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct SettingsChange {
     pub data_decoded: DataDecoded,
     pub settings_info: Option<SettingsInfo>,
 }
 
-#[derive(serde::Deserialize, Serialize, Debug, PartialEq)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[serde(tag = "type")]
 pub enum SettingsInfo {
@@ -142,7 +142,7 @@ pub enum SettingsInfo {
     DeleteGuard,
 }
 
-#[derive(serde::Deserialize, Serialize, Debug, PartialEq)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Custom {
     pub to: AddressEx,
@@ -154,7 +154,7 @@ pub struct Custom {
     pub is_cancellation: bool,
 }
 
-#[derive(serde::Deserialize, Serialize, Debug, PartialEq)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct Creation {
     pub creator: AddressEx,

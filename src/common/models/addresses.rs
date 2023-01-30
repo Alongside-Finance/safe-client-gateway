@@ -1,7 +1,7 @@
 use crate::providers::info::InfoProvider;
 use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize, Serialize, Debug, PartialEq)]
+#[derive(Clone, Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct AddressEx {
     pub value: String,
