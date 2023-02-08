@@ -218,7 +218,7 @@ use std::collections::HashMap;
 /// }
 /// ```
 /// </details>
-#[derive(serde::Deserialize, PartialEq, Serialize, Debug)]
+#[derive(Clone, serde::Deserialize, PartialEq, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct TransactionDetails {
     pub safe_address: String,
@@ -233,14 +233,14 @@ pub struct TransactionDetails {
     pub safe_app_info: Option<SafeAppInfo>,
 }
 
-#[derive(serde::Deserialize, PartialEq, Serialize, Debug)]
+#[derive(Clone, serde::Deserialize, PartialEq, Serialize, Debug)]
 #[serde(tag = "type", rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum DetailedExecutionInfo {
     Multisig(MultisigExecutionDetails),
     Module(ModuleExecutionDetails),
 }
 
-#[derive(serde::Deserialize, PartialEq, Serialize, Debug)]
+#[derive(Clone, serde::Deserialize, PartialEq, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct MultisigExecutionDetails {
     pub submitted_at: i64,
@@ -263,7 +263,7 @@ pub struct MultisigExecutionDetails {
     pub trusted: bool,
 }
 
-#[derive(serde::Deserialize, PartialEq, Serialize, Debug)]
+#[derive(Clone, serde::Deserialize, PartialEq, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct MultisigConfirmation {
     pub signer: AddressEx,
@@ -271,13 +271,13 @@ pub struct MultisigConfirmation {
     pub submitted_at: i64,
 }
 
-#[derive(serde::Deserialize, PartialEq, Serialize, Debug)]
+#[derive(Clone, serde::Deserialize, PartialEq, Serialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct ModuleExecutionDetails {
     pub address: AddressEx,
 }
 
-#[derive(serde::Deserialize, Serialize, Debug, PartialEq)]
+#[derive(Clone, serde::Deserialize, Serialize, Debug, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct TransactionData {
     pub hex_data: Option<String>,
